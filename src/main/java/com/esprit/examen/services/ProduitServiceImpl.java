@@ -2,6 +2,8 @@ package com.esprit.examen.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +68,49 @@ public class ProduitServiceImpl implements IProduitService {
 		produitRepository.save(produit);
 
 	}
+	
+	@Override
+	@Transactional
 
+	public void deleteProduitById(Long id) {
+			log.debug("methode deleteProduitById ");
+			try {
+				Optional<Produit> prr = produitRepository.findById(id);
+				if(prr.isPresent()){
+					Produit pr = prr.get();
+					produitRepository.delete(pr);
+				log.debug("deleteProduitById fini avec succes ");
+				}
+				else {
+					log.error("erreur methode deleteProduitById : " );
+				}
+			} catch (Exception e) {
+				log.error("erreur methode deleteProduitById : " +e);
+			}
 
+		}
+
+	@Override
+	public Produit getProduitById(Long id) {
+			log.debug("methode getProduitById ");
+			try {
+				Produit p= produitRepository.findById(id).orElse(null);
+				log.debug("getProduitById fini avec succes ");
+				return p;
+			} catch (Exception e) {
+				log.error("erreur methode getProduitById : " +e);
+				return null;
+
+			}
+	}
+	
+	@Override
+	public void UpdateLibelleById(String libelle, Long id) {
+		Produit p = produitRepository.findById(id).orElse(null);
+		if(p!= null) {
+			p.setLibelleProduit(libelle);
+			produitRepository.save(p);
+		}
+		
+	}
 }

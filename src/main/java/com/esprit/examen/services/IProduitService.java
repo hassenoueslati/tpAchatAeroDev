@@ -16,5 +16,9 @@ public interface IProduitService {
 	Produit retrieveProduit(Long id);
 
 	void assignProduitToStock(Long idProduit, Long idStock);
+	
+	public void deleteProduitById(Long id);
+	public Produit getProduitById(Long id);
+	public void UpdateLibelleById(String libelle,Long id);
 
 }
