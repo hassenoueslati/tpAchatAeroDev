@@ -2,6 +2,7 @@ package com.esprit.examen.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -55,8 +56,8 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	}
 
 	public Fournisseur updateFournisseur(Fournisseur f) {
-		DetailFournisseur df = saveDetailFournisseur(f);
-		f.setDetailFournisseur(df);	
+		/*DetailFournisseur df = saveDetailFournisseur(f);
+		f.setDetailFournisseur(df);	*/    
 		fournisseurRepository.save(f);
 		return f;
 	}
@@ -78,9 +79,59 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
 		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
-        fournisseur.getSecteurActivites().add(secteurActivite);
-        fournisseurRepository.save(fournisseur);
+        if (fournisseur==(null))
+		{
+			log.info("Error");  
+		}
+		else
+		{
+			 fournisseur.getSecteurActivites().add(secteurActivite);
+		        fournisseurRepository.save(fournisseur);
 		
+		}
+	}
+	
+	@Override
+	@Transactional
+
+	public void deleteFournisseurById(Long id) {
+			log.debug("methode deleteFournisseurById ");
+			try {
+				Optional<Fournisseur> foo = fournisseurRepository.findById(id);
+				if(foo.isPresent()){
+				Fournisseur fo = foo.get();
+				fournisseurRepository.delete(fo);
+				log.debug("deleteFournisseurById fini avec succes ");
+				}
+				else {
+					log.error("erreur methode deleteFournisseureById : " );
+				}
+			} catch (Exception e) {
+				log.error("erreur methode deleteFournisseurById : " +e);
+			}
+
+		}
+
+	@Override
+	public Fournisseur getFournisseurById(Long id) {
+			log.debug("methode getFournisseurById ");
+			try {
+				Fournisseur f= fournisseurRepository.findById(id).orElse(null);
+				log.debug("getFournisseurById fini avec succes ");
+				return f;
+			} catch (Exception e) {
+				log.error("erreur methode getFournisseurById : " +e);
+				return null;
+			}
+		}
+
+	@Override
+	public void UpdateLibelleFournisseurById(String libelle, Long id) {
+		Fournisseur f = fournisseurRepository.findById(id).orElse(null);
+		if(f!= null) {
+			f.setLibelle(libelle);
+			fournisseurRepository.save(f);
+		}
 		
 	}
 
