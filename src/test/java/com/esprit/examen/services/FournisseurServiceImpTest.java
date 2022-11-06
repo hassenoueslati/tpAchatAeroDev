@@ -24,7 +24,6 @@ import com.esprit.examen.entities.Fournisseur;
 import com.esprit.examen.repositories.FournisseurRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
 
 public class FournisseurServiceImpTest {
