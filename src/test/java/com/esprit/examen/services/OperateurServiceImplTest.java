@@ -23,7 +23,6 @@ import com.esprit.examen.entities.Operateur;
 import com.esprit.examen.repositories.OperateurRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
 
 public class OperateurServiceImplTest {
