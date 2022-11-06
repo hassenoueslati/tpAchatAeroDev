@@ -90,7 +90,7 @@ public void TestUpdateFournisseur() {
     when(fr.save(f1)).thenReturn(f1);
     assertNotNull(f1);
     assertEquals(f1, fs.updateFournisseur(f1));
-
+    
     System.out.println("Fournisseur Updated Successfully !");
 }
 @Test
