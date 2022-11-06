@@ -25,7 +25,6 @@ import com.esprit.examen.repositories.OperateurRepository;
 import com.esprit.examen.repositories.ProduitRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
 
 public class ProduitServiceImplTest {
