@@ -24,7 +24,7 @@ import com.esprit.examen.entities.Fournisseur;
 import com.esprit.examen.repositories.FournisseurRepository;
 
 @ExtendWith(MockitoExtension.class)
-@TestMethodOrder(OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class FournisseurServiceImpTest {
 private static final Logger l = LogManager.getLogger(FournisseurServiceImpTest.class);
