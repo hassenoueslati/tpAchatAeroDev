@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.esprit.examen.entities.Fournisseur;
 import com.esprit.examen.repositories.FournisseurRepository;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(MockitoExtension.class)
 @TestMethodOrder(OrderAnnotation.class)
 
 public class FournisseurServiceImpTest {
