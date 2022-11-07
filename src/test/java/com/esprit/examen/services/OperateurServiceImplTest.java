@@ -22,9 +22,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.esprit.examen.entities.Operateur;
 import com.esprit.examen.repositories.OperateurRepository;
 
-@RunWith(SpringRunner.class)
-@TestMethodOrder(OrderAnnotation.class)
 
+@ExtendWith(MockitoExtension.class)
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OperateurServiceImplTest {
 private static final Logger l = LogManager.getLogger(OperateurServiceImplTest.class);
 
