@@ -87,14 +87,20 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
-
+	<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<name>Nexus Repository </name>
+			<url>http://192.168.122.1:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-maven-plugin</artifactId>
-</plugin>
-<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
 			  <artifactId>maven-clean-plugin</artifactId>
 			  <version>3.1.0</version>
 			</plugin>
@@ -131,7 +137,12 @@
 			<plugin>
 			  <artifactId>maven-project-info-reports-plugin</artifactId>
 			  <version>3.0.0</version>
-			</plugin> 
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
 			
 		</plugins>
 	</build>
