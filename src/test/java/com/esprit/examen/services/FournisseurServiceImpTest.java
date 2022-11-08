@@ -28,8 +28,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.esprit.examen.entities.Fournisseur;
 import com.esprit.examen.repositories.FournisseurRepository;
 
-@ExtendWith(MockitoExtension.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@RunWith(SpringRunner.class)
+@TestMethodOrder(OrderAnnotation.class)
 
 public class FournisseurServiceImpTest {
 private static final Logger l = LogManager.getLogger(FournisseurServiceImpTest.class);
@@ -39,7 +39,7 @@ private FournisseurRepository fr;
 @InjectMocks
 private FournisseurServiceImpl fs;
 
-@Autowired 
+@Autowired
 IFournisseurService fournisseurservice	;
 
 Fournisseur f1 = new Fournisseur("A58455xe8", "Adidas");
@@ -48,17 +48,10 @@ List<Fournisseur> Fournisseurlist = Arrays.asList(f1,f2);
 @Test
 @Order(1)
 public void TestAddFournisseur () {
-	Fournisseur four = new Fournisseur();
-    List<Fournisseur> LFourn = new ArrayList<>();
-    for (Long i=1L;i<=10L;i++) {
-    	four.setIdFournisseur(i);
-    	four.setCode("58Xs96513");
-    	four.setLibelle("Adidas");
-
-    	Fournisseur fa=fr.save(four);
-    	LFourn.add(fa);
-    }
-    assertEquals(10,LFourn.size());
+	when(fr.save(f1)).thenReturn(f1);
+    assertNotNull(f1);
+    assertEquals(f1,fs.addFournisseur(f1));
+	System.out.print("produit "+ f1.getLibelle() + " added succesfully");
 	}
 
 @Test
