@@ -39,7 +39,7 @@ Long getId()
 void TestaddOperateur() {
 	Operateur op = new Operateur();
     List<Operateur> Operateurs = new ArrayList<>();
-    for (Long i=1L;i<=5L;i++) {
+    for (Long i=1L;i<=10L;i++) {
         op.setIdOperateur(i);
         op.setNom("wael");
         op.setPrenom("amri");
