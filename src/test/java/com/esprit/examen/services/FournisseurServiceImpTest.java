@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.ArrayList;
+
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -46,10 +48,17 @@ List<Fournisseur> Fournisseurlist = Arrays.asList(f1,f2);
 @Test
 @Order(1)
 public void TestAddFournisseur () {
-	when(fr.save(f1)).thenReturn(f1);
-    assertNotNull(f1);
-    assertEquals(f1,fs.addFournisseur(f1));
-	System.out.print("Fournisseur "+ f1.getLibelle()+ " added succesfully");
+	Fournisseur four = new Fournisseur();
+    List<Fournisseur> LFourn = new ArrayList<>();
+    for (Long i=1L;i<=10L;i++) {
+    	four.setIdFournisseur(i);
+    	four.setCode("58Xs96513");
+    	four.setLibelle("Adidas");
+
+    	Fournisseur fa=fr.save(four);
+    	LFourn.add(fa);
+    }
+    assertEquals(10,LFourn.size());
 	}
 
 @Test
