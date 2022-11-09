@@ -75,7 +75,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository </name>
-			<url>http://http://172.10.0.140:8081/tpAchatAeroDev/Louay/</url>
+			<url>http://http://192.168.122.1:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 
@@ -85,6 +85,10 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
