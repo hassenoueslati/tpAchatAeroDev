@@ -28,33 +28,33 @@ public class SecteurActiviteImplTest {
 	 
 	 @Test
 	    public void testAddSecteurActivite(){
-	    List<SecteurActivite> SecteurActivites = ss.retrieveAllSecteurActivite();
-	    int expected = SecteurActivites.size();
-	    SecteurActivite s = new SecteurActivite("123136","banque");
+		    List<SecteurActivite> SecteurActivites = ss.retrieveAllSecteurActivite();
+		    int expected = SecteurActivites.size();
+		    SecteurActivite s = new SecteurActivite("123136","banque");
 
-	    SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
-	    assertEquals(expected+1, ss.retrieveAllSecteurActivite().size());
-	    assertNotNull(savedSecteurActivite.getLibelleSecteurActivite());
-	    ss.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
+		    SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
+		    assertEquals(expected+1, ss.retrieveAllSecteurActivite().size());
+		    assertNotNull(savedSecteurActivite.getLibelleSecteurActivite());
+		    ss.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
 
 	    }
 	 
 	 @Test
-	    public void testUpdateProduit() {
-		 SecteurActivite s = new SecteurActivite("123136","banque");
-		SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
-		savedSecteurActivite.setLibelleSecteurActivite("64654654");
-	    ss.updateSecteurActivite(savedSecteurActivite);
-	    assertEquals(s.getLibelleSecteurActivite(),savedSecteurActivite.getLibelleSecteurActivite());
-	    ss.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
+	    public void testUpdateSecteurActivite() {
+		    SecteurActivite s = new SecteurActivite("123136","banque");
+		    SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
+		    savedSecteurActivite.setLibelleSecteurActivite("64654654");
+		    ss.updateSecteurActivite(savedSecteurActivite);
+		    assertEquals(s.getLibelleSecteurActivite(),savedSecteurActivite.getLibelleSecteurActivite());
+		    ss.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
 	    }
 
-	    @Test
-	    public void testDeleteProduit() {
-	    SecteurActivite s = new SecteurActivite("123136","banque");
-		SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
-		ss.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
-		assertNotNull(savedSecteurActivite.getIdSecteurActivite());
+	 @Test
+	    public void testDeleteSecteurActivite() {
+		    SecteurActivite s = new SecteurActivite("123136","banque");
+	            SecteurActivite savedSecteurActivite= ss.addSecteurActivite(s);
+		    ss.deleteSecteurActivite(savedSecteurActivite.getIdSecteurActivite());
+		    assertNotNull(savedSecteurActivite.getIdSecteurActivite());
 
 	    }
 
