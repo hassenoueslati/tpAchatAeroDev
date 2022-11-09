@@ -15,8 +15,8 @@ services:
   app:
     depends_on:
       - mysqldb
-    image: 0stain/tpAchatProject
-    container_name: tpAchatProject
+    image: 0stain/devops
+    container_name: devops
     restart: on-failure
     ports:
       - "8089:8089"
