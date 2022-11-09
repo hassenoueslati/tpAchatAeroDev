@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: tpAchatProject
-Implementation-Version: 1.0
+Implementation-Version: 1.0.5-SNAPSHOT
 Built-By: Administrateur
 Implementation-Vendor-Id: com.esprit.examen
 Build-Jdk: 1.8.0_60
