@@ -23,7 +23,7 @@ import com.esprit.examen.entities.Operateur;
 import com.esprit.examen.entities.Produit;
 import com.esprit.examen.repositories.OperateurRepository;
 import com.esprit.examen.repositories.ProduitRepository;
-
+@SpringBootTest
 @RunWith(SpringRunner.class)
 @TestMethodOrder(OrderAnnotation.class)
 
