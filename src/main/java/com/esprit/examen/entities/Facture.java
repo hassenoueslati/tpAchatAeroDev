@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,22 +38,33 @@ public class Facture implements Serializable {
 	private Boolean archivee;
 	@OneToMany(mappedBy = "facture")
 	private Set<DetailFacture> detailsFacture;
-    @ManyToOne
-    @JsonIgnore
-    private Fournisseur fournisseur;
-    @OneToMany(mappedBy="facture")
-    @JsonIgnore
-    private Set<Reglement> reglements;
-    
-    public Facture(float montantRemise, float montantFacture, Date dateCreationFacture, Date dateDerniereModificationFacture, Boolean archivee) {
+    //@ManyToOne
+    //@JsonIgnore
+	//private Fournisseur fournisseur;
+	//@OneToMany(mappedBy="facture")
+	//@JsonIgnore
+	//private Set<Reglement> reglements;
+	public Facture(float montantRemise, float montantFacture, Date dateCreationFacture, Boolean archivee) {
 		super();
-		this.montantRemise= montantRemise;
+		this.montantRemise = montantRemise;
 		this.montantFacture = montantFacture;
-		this.dateCreationFacture = dateCreationFacture ; 
-		this.dateDerniereModificationFacture = dateDerniereModificationFacture ; 
-		this.archivee= archivee;
-
+		this.dateCreationFacture = dateCreationFacture;
+		this.archivee = archivee;
 	}
-
+	public Boolean getArchivee() {
+		return archivee;
+	}
+	public void setArchivee(Boolean archivee) {
+		this.archivee = archivee;
+	}
+	public Long getIdFacture() {
+		return idFacture;
+	}
+	public void setIdFacture(Long idFacture) {
+		this.idFacture = idFacture;
+	}
+	
+	
+	
 	
 }
