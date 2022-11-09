@@ -15,7 +15,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    image: Louay/tpAchatProject
+    image: 0stain/tpAchatProject
     container_name: tpAchatProject
     restart: on-failure
     ports:
