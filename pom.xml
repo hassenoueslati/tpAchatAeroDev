@@ -95,6 +95,11 @@
 			<name>Nexus Repository </name>
 			<url>http://192.168.122.1:8081/repository/maven-releases/</url>
 		</repository>
+		<snapshotRepository>
+        <id>snapshots</id>
+        <name>Snapshots</name>
+        <url>http://localHost:8081/tpAchatAeroDev/Louay/</url>
+    </snapshotRepository>
 	</distributionManagement>
 
 	<build>
