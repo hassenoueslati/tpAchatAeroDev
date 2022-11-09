@@ -1,69 +1,62 @@
 package com.esprit.examen.services;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.esprit.examen.entities.Fournisseur;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Assertions;
-
-import com.esprit.examen.entities.Fournisseur;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-
-
 public class FournissuerTest {
-
-	 @Autowired
-	    
-	    IFournisseurService fs;
+	
+	@Autowired
+	IFournisseurService fs;
 	 
-	 
-	   @Test
-	    void retrieveAllProduits() {
-	    	List<Fournisseur> listFournisseurss = fs.retrieveAllFournisseurs();
-	        Assertions.assertEquals(0, listFournisseurss.size());
+	 @Test
+	    void retrieveAllSecteurActivites() {
+	    	List<Fournisseur> SecteurActivites = fs.retrieveAllFournisseurs();
+	        Assertions.assertEquals(0, SecteurActivites.size());
 	    }
-	   
-	   
 	 
-	   @Test
-	    public void testAddFournisseur(){
-	    List<Fournisseur> Fournisseurs = fs.retrieveAllFournisseurs();
-	    int expected = Fournisseurs.size();
-	    Fournisseur f = new Fournisseur("Sx84qDa","Nike");
-	   
+	 @Test
+	    public void testAddSecteurActivite(){
+	    List<Fournisseur> SecteurActivites = fs.retrieveAllFournisseurs();
+	    int expected = SecteurActivites.size();
+	    Fournisseur s = new Fournisseur("123136","banque");
 
-	    Fournisseur savedFournisseur= fs.addFournisseur(f);
+	    Fournisseur savedSecteurActivite= fs.addFournisseur(s);
 	    assertEquals(expected+1, fs.retrieveAllFournisseurs().size());
-	    assertNotNull(savedFournisseur.getLibelle());
-	    fs.deleteFournisseur(savedFournisseur.getIdFournisseur());
+	    assertNotNull(savedSecteurActivite.getLibelle());
+	    fs.deleteFournisseur(savedSecteurActivite.getIdFournisseur());
 
-	    } 
-	   @Test
-	    public void testUpdateFournisseur() {
-		    Fournisseur f = new Fournisseur("Sx84qDa","Nike");
-
-		    Fournisseur savedFournisseur= fs.addFournisseur(f);
-	    fs.updateFournisseur(savedFournisseur);
-	    assertEquals(f.getLibelle(),savedFournisseur.getLibelle());
-	    fs.deleteFournisseur(savedFournisseur.getIdFournisseur());
 	    }
- 
-	   @Test
+	 
+	 @Test
+	    public void testUpdateProduit() {
+		 Fournisseur f = new Fournisseur("123136","banque");
+		Fournisseur savedSecteurActivite= fs.addFournisseur(f);
+		savedSecteurActivite.setLibelle("ADidas");
+	    fs.updateFournisseur(savedSecteurActivite);
+	    assertEquals(f.getLibelle(),savedSecteurActivite.getLibelle());
+	    fs.deleteFournisseur(savedSecteurActivite.getIdFournisseur());
+	    }
+
+	    @Test
 	    public void testDeleteProduit() {
-		   Fournisseur p = new Fournisseur();
-	    
-		   Fournisseur savedService= fs.addFournisseur(p);
-	    fs.deleteFournisseur(savedService.getIdFournisseur());
-	    assertNotNull(savedService.getIdFournisseur());
+	    Fournisseur f = new Fournisseur("123136","banque");
+		Fournisseur savedSecteurActivite= fs.addFournisseur(f);
+		fs.deleteFournisseur(savedSecteurActivite.getIdFournisseur());
+		assertNotNull(savedSecteurActivite.getIdFournisseur());
 
 	    }
-	   
+
+	
 }
