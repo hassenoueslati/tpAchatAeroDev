@@ -11,8 +11,8 @@
 	<groupId>com.esprit.examen</groupId>
 	<artifactId>tpAchatProject</artifactId>
 	<version>1.0</version>
-	<name>achat</name>
-	<description>Projet pour le module DevOps</description>
+	<name>tpAchatProject</name>
+	<description>tpAchatProject</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
@@ -60,7 +60,7 @@
 		<distributionManagement>
 			<repository>
 				<id>deploymentRepo</id>
-				<url>http://192.168.1.21:8081/repository/maven-releases/</url>
+				<url>http://172.10.0.140:8081/repository/maven-releases/</url>
 			</repository>
 	</distributionManagement>
 	
