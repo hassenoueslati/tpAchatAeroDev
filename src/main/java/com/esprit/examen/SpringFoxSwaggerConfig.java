@@ -1,5 +1,4 @@
 package com.esprit.examen;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +30,7 @@ public class SpringFoxSwaggerConfig {
 				.securityContexts(Collections.singletonList(securityContext()))
 				.securitySchemes(Arrays.asList(apiKey()))
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("tn.esprit.rh.achat.controllers"))
+				.apis(RequestHandlerSelectors.basePackage("com.esprit.examen.controllers"))
 				.paths(PathSelectors.any())
 				.build();
 	}
@@ -59,7 +58,7 @@ public class SpringFoxSwaggerConfig {
 		AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
 		AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
 		authorizationScopes[0] = authorizationScope;
-		return Arrays.asList(new SecurityReference("Bearer", authorizationScopes));
+		return Arrays.asList(new SecurityReference("Bearer", authorizationScopes)); 
 
 	}
 }
