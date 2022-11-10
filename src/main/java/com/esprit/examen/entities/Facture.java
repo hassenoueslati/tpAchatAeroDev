@@ -13,7 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -43,7 +42,7 @@ public class Facture implements Serializable {
 	//private Fournisseur fournisseur;
 	//@OneToMany(mappedBy="facture")
 	//@JsonIgnore
-	//private Set<Reglement> reglements;
+	
 	public Facture(float montantRemise, float montantFacture, Date dateCreationFacture, Boolean archivee) {
 		super();
 		this.montantRemise = montantRemise;

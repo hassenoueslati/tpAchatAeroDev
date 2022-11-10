@@ -1,20 +1,53 @@
-version: "3"
-
+version: '3'
 services:
-  mysqldb:
-    container_name: mysql
+  database:
     image: mysql
-    restart: unless-stopped
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - /home/mysql/data:/var/lib/mysql
-  
-  spring_app:
-    image: tpachat
-    container_name: tpachat
-    restart: on-failure
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE:       
     ports:
-      - 9090:9090
+      - 3306:3306
+    networks:
+     - projectdevops
+     
+  spring-boot:
+    image: bouhmiid/alpine
+    container_name: springcontainer
+    ports:
+      - 8082:8082
     depends_on:
-      -mysqldb
+      - database
+    networks:
+      - projectdevops 
+    restart: on-failure
+  sonarqube:
+    container_name: sonarqube
+    image: "sonarqube:8.9.7-community"
+    ports:
+      - "9001:9001"
+    volumes:
+     - 'sonarqube_data:/opt/sonarqube/data'
+     - 'sonarqube_extensions:/opt/sonarqube/extensions'
+     - 'sonarqube_logs:/opt/sonarqube/logs'
+    networks:
+     - projectdevops
+
+  nexus:
+    container_name: nexuspipeline
+    image: sonatype/nexus3
+    volumes:
+      - "nexus-data:/nexus-data"
+    ports:
+      - "8086:8086"
+    networks:
+     - projectdevops
+  
+volumes:
+  nexus-data:
+  sonarqube_logs:
+  sonarqube_extensions:
+  sonarqube_data:
+
+networks:
+  projectdevops:
