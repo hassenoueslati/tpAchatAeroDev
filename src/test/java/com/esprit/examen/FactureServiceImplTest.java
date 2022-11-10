@@ -33,7 +33,7 @@ import com.esprit.examen.services.FactureServiceImpl;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 //@ExtendWith(MockitoExtension.class)
-public class FactureServiceImplTest {
+ class FactureServiceImplTest {
 
 	FactureRepository factureRepo = Mockito.mock(FactureRepository.class);
 	
@@ -52,7 +52,7 @@ public class FactureServiceImplTest {
 	};*/
 	
 	@Test
-	public void addFactureTest() {
+	 void addFactureTest() {
 		when(factureRepo.save(f2)).thenReturn(f2);
 		assertNotNull(f2);
 		Facture factPersistee = factureService.addFacture(f2);
@@ -60,13 +60,13 @@ public class FactureServiceImplTest {
 	}
 	
 	@Test
-	public void retrieveFactureTest() {
+	 void retrieveFactureTest() {
 		when(factureRepo.findById(f2.getIdFacture())).thenReturn(Optional.of(f2));
 		assertEquals(f2, factureService.retrieveFacture(f2.getIdFacture()));		
 	}
 	
 	@Test
-	public void retrieveAllFacturesTest() {
+	 void retrieveAllFacturesTest() {
 		when(factureRepo.findAll()).thenReturn(Stream.of(f1, f2).collect(Collectors.toList()));
 		assertEquals(2, factureService.retrieveAllFactures().size());
 	}
