@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
 EXPOSE 8082
-ADD target/tpAchatAeroDev-1.0.jar tpAchatAeroDev.jar
-ENTRYPOINT ["java","-jar","/tpAchatAeroDev.jar"]
+ADD target/tpAchatProject-1.0.jar tpAchatProject.jar
+ENTRYPOINT ["java","-jar","/tpAchatProject.jar"]
