@@ -16,4 +16,8 @@ public interface IOperateurService {
 
 	Operateur retrieveOperateur(Long id);
 
+	public void deleteOperateurById(Long id);
+	public Operateur getOperateurById(Long id);
+	public void UpdateNomById(String nom,Long id);
+
 }
