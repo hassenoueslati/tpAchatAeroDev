@@ -60,13 +60,13 @@ import com.esprit.examen.services.FactureServiceImpl;
 	}
 	
 	@Test
-	 void retrieveFactureTest() {
+	public void retrieveFactureTest() {
 		when(factureRepo.findById(f2.getIdFacture())).thenReturn(Optional.of(f2));
 		assertEquals(f2, factureService.retrieveFacture(f2.getIdFacture()));		
 	}
 	
 	@Test
-	 void retrieveAllFacturesTest() {
+	public void retrieveAllFacturesTest() {
 		when(factureRepo.findAll()).thenReturn(Stream.of(f1, f2).collect(Collectors.toList()));
 		assertEquals(2, factureService.retrieveAllFactures().size());
 	}
