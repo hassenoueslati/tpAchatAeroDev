@@ -78,11 +78,10 @@
 	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
-			<name>Nexus Repository </name>
-			<url>http://192.168.1.201:8081/repository/maven-snapshots/</url>
+			<name>releases</name>
+			<url>http://192.168.1.201:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
-
 	<build>
 		<plugins>
 			<plugin>
