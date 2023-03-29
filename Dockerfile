@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:11
 EXPOSE 8083
-ADD target/tpAchatProject-1.0.jar tpAchatProject.jar
-ENTRYPOINT ["java","-jar","/tpAchatProject.jar"]
+ADD target/validation.jar validation.jar
+ENTRYPOINT ["java","-jar","/validation.jar"]

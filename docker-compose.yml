@@ -1,53 +1,25 @@
 version: '3'
 services:
-  database:
+  db:
     image: mysql
-    container_name: mysql
+    container_name: basedb
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-      MYSQL_DATABASE: mydatabase      
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Ci_Cd_DB   
     ports:
       - 3306:3306
     networks:
-     - projectdevops
+     - AppNet
      
   spring-boot:
-    image: bouhmiid/alpine
-    container_name: springcontainer
+    image: seifeddinebs/validation
+    container_name: app
     ports:
-      - 8082:8082
+      - 8083:8083
     depends_on:
-      - database
+      - db
     networks:
-      - projectdevops 
+      - AppNet 
     restart: on-failure
-  sonarqube:
-    container_name: sonarqube
-    image: "sonarqube:8.9.7-community"
-    ports:
-      - "9001:9001"
-    volumes:
-     - 'sonarqube_data:/opt/sonarqube/data'
-     - 'sonarqube_extensions:/opt/sonarqube/extensions'
-     - 'sonarqube_logs:/opt/sonarqube/logs'
-    networks:
-     - projectdevops
-
-  nexus:
-    container_name: nexuspipeline
-    image: sonatype/nexus3
-    volumes:
-      - "nexus-data:/nexus-data"
-    ports:
-      - "8081:8081"
-    networks:
-     - projectdevops
-  
-volumes:
-  nexus-data:
-  sonarqube_logs:
-  sonarqube_extensions:
-  sonarqube_data:
-
 networks:
-  projectdevops:
+  AppNet:
