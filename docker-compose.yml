@@ -1,34 +1,37 @@
-version: "2"
+version: "3.3"
 
 services:
- mysqldb:
-   image: mysql:5.7
-   restart: unless-stopped
-   environment:
-     - MYSQL_DATABASE=tpachato
-   ports:
-      - "4000:3306"
-   volumes:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD= yes
+      - MYSQL_DATABASE=tpAchatProject
+    ports:
+      - "3306:3306"
+    volumes:
       - db:/var/lib/mysql
- app:
-   depends_on:
-     - mysqldb
-   build: .
-   restart: on-failure
-   ports:
-     - "8089:8089"
-   environment:
-     SPRING_APPLICATION_JSON: '{
-       "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/tpachato?useSSL=false",
-       "spring.datasource.username" : "root",
-       "spring.datasource.password" : "root",
-       "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-       "spring.jpa.hibernate.ddl-auto" : "update"}'
-   stdin_open: true
-   tty: true
-   
-   
- 
+  app:
+    depends_on:
+      - mysqldb
+    image: 0stain/devops
+    container_name: devops
+    restart: on-failure
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/tpAchatProject?useSSL=false",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"}'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+  
 
+      
 volumes:
- db:
+  db:
