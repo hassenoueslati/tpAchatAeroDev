@@ -1,25 +1,34 @@
-version: '3'
+version: "2"
+
 services:
-  db:
-    image: mysql
-    container_name: basedb
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Ci_Cd_DB   
-    ports:
-      - 3306:3306
-    networks:
-     - AppNet
-     
-  spring-boot:
-    image: seifeddinebs/validation
-    container_name: app
-    ports:
-      - 8083:8083
-    depends_on:
-      - db
-    networks:
-      - AppNet 
-    restart: on-failure
-networks:
-  AppNet:
+ mysqldb:
+   image: mysql:5.7
+   restart: unless-stopped
+   environment:
+     - MYSQL_DATABASE=tpachato
+   ports:
+      - "4000:3306"
+   volumes:
+      - db:/var/lib/mysql
+ app:
+   depends_on:
+     - mysqldb
+   build: .
+   restart: on-failure
+   ports:
+     - "8089:8089"
+   environment:
+     SPRING_APPLICATION_JSON: '{
+       "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/tpachato?useSSL=false",
+       "spring.datasource.username" : "root",
+       "spring.datasource.password" : "root",
+       "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+       "spring.jpa.hibernate.ddl-auto" : "update"}'
+   stdin_open: true
+   tty: true
+   
+   
+ 
+
+volumes:
+ db:
